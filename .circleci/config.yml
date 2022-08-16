@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   hi_job:
     docker:
-     - image: circleci/ubuntu:latest
+     - image: circleci/node:13.8.0
     steps:
       - checkout
       - run:
@@ -11,5 +11,6 @@ jobs:
               echo "hi salah"
 
 workflows:
+  new_wokflow:
     jobs:
       - hi_job
