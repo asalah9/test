@@ -1,0 +1,15 @@
+version: 2.1
+jobs:
+  hi_job:
+    docker:
+     - image: circleci/ubuntu:latest
+    steps:
+      - checkout
+      - run:
+          name: letsRunCI
+          command: |
+              echo "hi salah"
+
+workflows:
+    jobs:
+      - hi_job
