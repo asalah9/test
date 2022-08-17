@@ -36,9 +36,8 @@ jobs:
 
 
 workflows:
-  Ansible:
+  Ansible_workflow:
     jobs:
       - ansible1
       - ansible2:
           requires : [ansible1]
-    
