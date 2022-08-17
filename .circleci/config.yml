@@ -1,16 +1,16 @@
-version: 2.1
+version: '2.1'
+orbs:
+  aws-cli: circleci/aws-cli@2.0
 jobs:
-  hi_job:
-    docker:
-     - image: cimg/base:stable
+  aws-cli-cred-setup:
+    executor: aws-cli/default
     steps:
-      - checkout
-      - run:
-          name: letsRunCI
-          command: |
-              echo "hi salah"
-
+      - aws-cli/setup:
+          aws-access-key-id: ASIAXCOKHKKSGQR5AOF2
+          aws-secret-access-key: kj03dmAj+IX8USNRXmgeKs/6SZgYlsP4aHe8hdY/
+          aws-region: us-east-1
 workflows:
-  new_wokflow:
+  aws-cli:
     jobs:
-      - hi_job
+      - aws-cli-cred-setup:
+          context: aws
