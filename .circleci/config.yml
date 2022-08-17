@@ -1,15 +1,40 @@
-version: '2.1'
+version: 2.1
 
 jobs:
-  aws-cli-cred-setup:
+  ansible1:
     docker:
-      - image: circleci/aws-cli@2.0
+      - image: cimg/base:stable
     steps:
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY
-          aws-secret-access-key: AWS_ACCESS_SECRET
-          aws-region: AWS_REGION_NAME
+      - checkout
+      - run :
+          name: Install AWS-CLI and 
+          command: |
+              curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+              unzip awscliv2.zip
+              sudo ./aws/install
+              aws --version #verify aws cli installation
+      - run  :
+            name: Ansible Inventory
+            command : |
+                aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --output text >> ~/inventory
+      - persist_to_workspace:
+            root: ~/
+            path: inventory
+          
+
+  ansible2:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - at_workspace:
+            at: ~
+      - run : cat ~/inventory        
+
+
 workflows:
-  aws-cli:
+  CI_NODEJS:
     jobs:
-      - aws-cli-cred-setup
+      - ansible1
+      - ansible2:
+          requires : [ansible1]
