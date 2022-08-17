@@ -1,9 +1,9 @@
 version: '2.1'
-orbs:
-  aws-cli: circleci/aws-cli@2.0
+
 jobs:
   aws-cli-cred-setup:
-    executor: aws-cli/default
+    docker:
+      image: circleci/aws-cli@2.0
     steps:
       - aws-cli/setup:
           aws-access-key-id: AWS_ACCESS_KEY
@@ -12,5 +12,4 @@ jobs:
 workflows:
   aws-cli:
     jobs:
-      - aws-cli-cred-setup:
-          context: aws
+      - aws-cli-cred-setup
