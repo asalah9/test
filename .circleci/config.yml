@@ -16,7 +16,7 @@ jobs:
               sudo ./aws/install
               aws --version #verify aws cli installation
       - run  :
-            name: Ansible Inventory
+            name: Get Instance IP - Ansible Inventory
             command : |
                 aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --output text >> ~/inventory
       - persist_to_workspace:
