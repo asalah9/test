@@ -6,9 +6,9 @@ jobs:
     executor: aws-cli/default
     steps:
       - aws-cli/setup:
-          aws-access-key-id: ASIAXCOKHKKSGQR5AOF2
-          aws-secret-access-key: kj03dmAj+IX8USNRXmgeKs/6SZgYlsP4aHe8hdY/
-          aws-region: us-east-1
+          aws-access-key-id: "ASIAXCOKHKKSGQR5AOF2"
+          aws-secret-access-key: "kj03dmAj+IX8USNRXmgeKs/6SZgYlsP4aHe8hdY/"
+          aws-region: "us-east-1"
 workflows:
   aws-cli:
     jobs:
