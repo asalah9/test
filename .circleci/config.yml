@@ -49,13 +49,14 @@ jobs:
       - run : 
           name: ansible_playbook
           command: |
+            pwd
             cat ~/inventory 
             ansible --version #Ansible installtion checkpoint
             #sudo apt install python3-pip
             #sudo pip install ansible-lint
             #ansible-lint --version
             #ansible-lint ansible/main-remote.yml
-            ansible-playbook -i ~/inventory ansible/main-remote.yml 
+            ansible-playbook ansible/main-remote.yml -i ~/inventory 
 
 
 
