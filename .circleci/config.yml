@@ -58,6 +58,8 @@ jobs:
             #ansible-lint ansible/main-remote.yml
             cp ~/inventory /home/circleci/project
             echo $?
+            ls
+            cd ansible
             ansible-playbook ansible/main-remote.yml -i ~/inventory 
 
 
