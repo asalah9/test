@@ -51,6 +51,7 @@ jobs:
           command: |
             cat ~/inventory 
             ansible --version #Ansible installtion checkpoint
+            apt install python3-pip
             pip install ansible-lint
             ansible-lint --version
             #ansible-playbook -i inventory main-remote.yml 
