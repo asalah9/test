@@ -3,7 +3,7 @@
 version: 2.1
 
 jobs:
-  inventory:
+  ansible1:
     docker:
       - image: cimg/base:stable
     steps:
@@ -26,7 +26,7 @@ jobs:
              - inventory
           
 
-  ansible:
+  ansible2:
     docker:
       - image: cimg/base:stable
     steps:
@@ -39,7 +39,7 @@ jobs:
 workflows:
   Ansible_workflow:
     jobs:
-      - inventory
-      - ansible:
-          requires : [inventory]
+      - ansible1
+      - ansible2:
+          requires : [ansible1]
     
