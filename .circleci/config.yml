@@ -55,7 +55,7 @@ jobs:
             #sudo pip install ansible-lint
             #ansible-lint --version
             #ansible-lint ansible/main-remote.yml
-            ansible-playbook -i inventory ansible/main-remote.yml 
+            ansible-playbook -i ~/inventory ansible/main-remote.yml 
 
 
 
