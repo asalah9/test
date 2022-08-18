@@ -56,6 +56,8 @@ jobs:
             #sudo pip install ansible-lint
             #ansible-lint --version
             #ansible-lint ansible/main-remote.yml
+            cp ~/inventory /home/circleci/project
+            echo $?
             ansible-playbook ansible/main-remote.yml -i ~/inventory 
 
 
