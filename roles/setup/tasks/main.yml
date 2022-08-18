@@ -3,8 +3,49 @@
   become: yes
   apt:
     update_cache: yes
-
-- name: "upgrade packages"
-  become: tyes
-  apt:
     upgrade: yes
+
+#To install Node and NPM follow: https://kyle.pericak.com/nodejs-ansible.html
+- name: "Add nodejs apt key"
+  become: yes
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
+
+- name: "Add nodejs 13.x ppa for apt repo"
+  become: yes
+  apt_repository:
+    repo: deb https://deb.nodesource.com/node_13.x bionic main
+    update_cache: yes
+
+- name: "Install nodejs"
+  become: yes
+  apt:
+    update_cache: yes
+    name: nodejs
+    state: present
+
+- name : "Install pm2 using npm"
+  become: yes
+  npm:
+    name: pm2
+    state: present
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: ~/web
+    state: directory
+    mode: '0755'
+
+- name: Copy index test page
+  copy:
+    src: "files/index.js"
+    dest: "~/web/index.js"
+    owner: ubuntu
+    group: ubuntu        
+    mode: 0644
+
+- name: Executing node
+  shell: |
+    pm2 start ~/web/index.js -f
+
