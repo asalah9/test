@@ -51,7 +51,7 @@ jobs:
           command: |
             cat ~/inventory 
             ansible --version #Ansible installtion checkpoint
-            ansible-playbook main-remote.yml -i ~/inventory
+            ansible-playbook main-remote.yml 
 
 
 
