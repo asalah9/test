@@ -54,6 +54,7 @@ jobs:
             sudo apt install python3-pip
             sudo pip install ansible-lint
             ansible-lint --version
+            ansible-lint main-remote.yml
             #ansible-playbook -i inventory main-remote.yml 
 
 
